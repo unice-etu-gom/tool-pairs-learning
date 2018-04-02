@@ -19,6 +19,31 @@ CTranslation::CTranslation(const QString &argTxt1, const QString &argTxt2)
 /* ########################################################################## */
 /* ########################################################################## */
 
+bool CTranslation::operator ==(const CTranslation &argOther) const
+{
+    bool    retVal  = true;
+
+    if(     this->m_text1 != argOther.m_text1
+        ||  this->m_text2 != argOther.m_text2 )
+    {
+        retVal  = false;
+    }
+
+    return retVal;
+}
+
+/* ########################################################################## */
+/* ########################################################################## */
+
+void    CTranslation::clear(void)
+{
+    this->m_text1.clear();
+    this->m_text2.clear();
+}
+
+/* ########################################################################## */
+/* ########################################################################## */
+
 const QString&  CTranslation::text1(void) const
 {
     return this->m_text1;

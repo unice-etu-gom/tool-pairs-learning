@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = tool-LearnTranslations
+TARGET = tool-pairs-learning
 TEMPLATE = app
 
 # ##############################################################################
@@ -30,14 +30,20 @@ DESTDIR = out/$$TEMPLATE
 # ##############################################################################
 # ##############################################################################
 
+INCLUDEPATH += $$PWD/src/
+
 SOURCES += \
     src/ui/MainWindow.cpp \
     src/main.cpp \
     src/core/CFileParser.cpp \
-    src/core/CTranslation.cpp
+    src/core/CTranslation.cpp \
+    src/core/CDataManager.cpp \
+    src/ui/WQuestion.cpp
 
 HEADERS  += \
     src/ui/MainWindow.h \
     src/core/CFileParser.h \
     src/core/CTranslation.h \
-    src/core/Log.h
+    src/core/Log.h \
+    src/core/CDataManager.h \
+    src/ui/WQuestion.h

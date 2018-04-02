@@ -1,14 +1,19 @@
-#include "ui/MainWindow.h"
+#include <stdlib.h>
+#include <time.h>
+
 #include <QApplication>
 
 #include "core/CFileParser.h"
 #include "core/Log.h"
+#include "ui/MainWindow.h"
 
 /* ########################################################################## */
 /* ########################################################################## */
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
+
     QApplication a(argc, argv);
 
 
