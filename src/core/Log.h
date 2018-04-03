@@ -11,7 +11,7 @@
 
 
 #define LOG_DBG(format,...)                     \
-                qDebug( "DEBUG:: %s"format,             \
+                qDebug( "DEBUG:: %s" format,             \
                 M_STR_POSITION_IN_CODE.c_str(), \
                 ##__VA_ARGS__ )
 
