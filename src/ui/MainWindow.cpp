@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ,   p_answerValidL( NULL )
     ,   p_answerWrongL( NULL )
     ,   p_dataManager( new CDataManager( this ) )
+    ,   p_questionsRemainingCountL( NULL )
     ,   p_wQuestion( NULL )
 {
     this->setMinimumWidth( 600 );
@@ -48,6 +49,9 @@ MainWindow::~MainWindow()
 
 void    MainWindow::_create_connections(void)
 {
+    connect( this->p_dataManager, SIGNAL(translationsListOriginalUpdated()),
+             this, SLOT(on_p_dataManager_translationsListOriginalUpdated()) );
+
     connect( this->p_wQuestion, SIGNAL(validAnswer()),
              this, SLOT(on_p_wQuestion_validAnswer()) );
 
@@ -68,6 +72,10 @@ void    MainWindow::_create_layout(void)
     this->statusBar()->addWidget( new QLabel( trUtf8( "Wrong answers :" ),
                                               this ) );
     this->statusBar()->addWidget( this->p_answerWrongL );
+    this->statusBar()->addWidget( new QLabel( " | ", this ) );
+    this->statusBar()->addWidget( new QLabel( trUtf8( "Remaining questions :" ),
+                                              this ) );
+    this->statusBar()->addWidget( this->p_questionsRemainingCountL );
 }
 
 /* ########################################################################## */
@@ -75,8 +83,9 @@ void    MainWindow::_create_layout(void)
 
 void    MainWindow::_createUi(void)
 {
-    this->p_answerValidL    = new QLabel( this );
-    this->p_answerWrongL    = new QLabel( this );
+    this->p_answerValidL                = new QLabel( this );
+    this->p_answerWrongL                = new QLabel( this );
+    this->p_questionsRemainingCountL    = new QLabel( this );
     this->p_wQuestion       = new WQuestion( this->p_dataManager, this );
 }
 
@@ -151,6 +160,14 @@ void    MainWindow::importFilesFromDialog()
 /* ########################################################################## */
 /* ########################################################################## */
 
+void    MainWindow::on_p_dataManager_translationsListOriginalUpdated(void)
+{
+    this->ui_updateCounters();
+}
+
+/* ########################################################################## */
+/* ########################################################################## */
+
 void    MainWindow::on_p_menuFile_clearAll(void)
 {
     this->p_dataManager->clearAll();
@@ -198,6 +215,8 @@ void    MainWindow::ui_updateCounters(void)
 {
     this->p_answerValidL->setNum( this->m_answersValidCount );
     this->p_answerWrongL->setNum( this->m_answersWrongCount );
+    this->p_questionsRemainingCountL->setNum(
+                this->p_dataManager->practiceListCount() );
 }
 
 /* ########################################################################## */

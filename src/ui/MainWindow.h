@@ -35,6 +35,7 @@ private:
 
     void    ui_updateCounters(void);
 
+    Q_SLOT  void    on_p_dataManager_translationsListOriginalUpdated(void);
     Q_SLOT  void    on_p_menuFile_loadFiles(void);
     Q_SLOT  void    on_p_menuFile_resetData(void);
     Q_SLOT  void    on_p_menuFile_clearAll(void);
@@ -53,6 +54,7 @@ private:
     QLabel*         p_answerValidL;
     QLabel*         p_answerWrongL;
     CDataManager*   p_dataManager;
+    QLabel*         p_questionsRemainingCountL;
     WQuestion*      p_wQuestion;
 
 
