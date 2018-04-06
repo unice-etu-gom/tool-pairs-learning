@@ -238,9 +238,14 @@ void    WQuestion::verifyAnswer(void)
             break;
     }
 
+    QRegExp lRegExp( QString::fromUtf8( "[^a-zA-Z\\d\\s]" ) );
+    QString lInputText  = this->p_inputLE->text();
+    lInputText.remove( lRegExp );
+    QString lExpectedClean  = lExpectedAnswer;
+    lExpectedClean.remove( lRegExp );
 
 
-    if( this->p_inputLE->text() == lExpectedAnswer )
+    if( lInputText.toLower() == lExpectedClean.toLower() )
     {
 //        QMessageBox::information( this, trUtf8( "Good answer ! :-)" ),
 //                                  trUtf8( "You answered correctly !" ) );
