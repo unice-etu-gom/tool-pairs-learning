@@ -121,7 +121,11 @@ void    MainWindow::_createUi_menus(void)
 
 void    MainWindow::dataReset(void)
 {
+    this->m_answersValidCount   = 0;
+    this->m_answersWrongCount   = 0;
     this->p_dataManager->practiceListReset();
+
+    this->ui_updateCounters();
 }
 
 /* ########################################################################## */
